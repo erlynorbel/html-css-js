@@ -134,9 +134,29 @@ body.dark-theme {
 .dark-theme .btn-primary {
     background: var(--primary-dark);
 }
-.dark-theme footer {
-    background: #0b1020;
+.dark-theme footer { background: #0b1020; }
+
+/* Footer */
+footer {
+    border-top: 1px solid var(--border-color);
+    background: var(--bg-white);
+    padding: 2rem 0;
 }
+footer p { color: var(--text-light); }
+.social-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+.social-links a {
+    color: var(--text-dark);
+    font-size: 1.5rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+.social-links a:hover { color: var(--primary-color); transform: translateY(-2px); }
+.dark-theme .social-links a { color: #e5e7eb; }
+.dark-theme .social-links a:hover { color: var(--primary-light); }
 
 /* Hero Section */
 .hero-section {
