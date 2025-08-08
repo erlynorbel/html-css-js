@@ -1,19 +1,70 @@
 // Portfolio Website JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Get navbar element
+    const navbar = document.querySelector('.navbar');
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.querySelector('.navbar-collapse');
     
-
-
+    // Mobile menu toggle
+    if (navbarToggler && navbarCollapse) {
+        navbarToggler.addEventListener('click', function() {
+            navbarCollapse.classList.toggle('show');
+        });
+        
+        // Close mobile menu when clicking on nav links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                navbarCollapse.classList.remove('show');
+            });
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!navbar.contains(e.target)) {
+                navbarCollapse.classList.remove('show');
+            }
+        });
+    }
+    
+    // Simple navbar visibility control
+    function updateNavbar() {
+        const currentSection = getCurrentSection();
+        
+        if (currentSection === 'home') {
+            navbar.classList.remove('navbar-visible');
+            document.body.style.paddingTop = '0';
+        } else {
+            navbar.classList.add('navbar-visible');
+            document.body.style.paddingTop = '80px';
+        }
+    }
+    
+    // Get current section based on scroll position
+    function getCurrentSection() {
+        const sections = document.querySelectorAll('section[id]');
+        const scrollPos = window.scrollY + 100;
+        
+        for (let section of sections) {
+            const top = section.offsetTop;
+            const bottom = top + section.offsetHeight;
+            
+            if (scrollPos >= top && scrollPos < bottom) {
+                return section.id;
+            }
+        }
+        return 'home';
+    }
+    
     // Smooth scrolling for navigation links
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
+    document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
             const targetSection = document.querySelector(targetId);
             
             if (targetSection) {
-                const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar
+                const offsetTop = targetSection.offsetTop - 80;
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
@@ -21,64 +72,20 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-
-    // Active navigation highlighting
-    const sections = document.querySelectorAll('section[id]');
-    const navItems = document.querySelectorAll('.nav-link');
     
+    // Handle scroll events
+    let scrollTimeout;
     window.addEventListener('scroll', function() {
-        let current = '';   
-        const scrollPosition = window.scrollY + 100;
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                current = section.getAttribute('id');
-            }
-        });
-        
-        navItems.forEach(item => {
-            item.classList.remove('active');
-            if (item.getAttribute('href') === `#${current}`) {
-                item.classList.add('active');
-            }
-        });
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            updateNavbar();
+            updateActiveLink();
+        }, 10);
     });
-
-
-
-    // Navbar visibility control
-    const navbar = document.querySelector('.navbar');
     
-    function updateNavbarVisibility() {
-        const scrollPosition = window.scrollY + 100;
-        const sections = document.querySelectorAll('section[id]');
-        let currentSection = '';
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                currentSection = section.getAttribute('id');
-            }
-        });
-        
-        // Show navbar only on about, projects, and contact sections
-        if (currentSection === 'about' || currentSection === 'projects' || currentSection === 'contact') {
-            navbar.style.display = 'block';
-        } else {
-            navbar.style.display = 'none';
-        }
-    }
-    
-    // Update navbar visibility on scroll
-    window.addEventListener('scroll', updateNavbarVisibility);
-    
-    // Initial check
-    updateNavbarVisibility();
+    // Initialize
+    updateNavbar();
+    updateActiveLink();
 
     // Contact form handling
     const contactForm = document.querySelector('#contact form');
@@ -192,15 +199,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-
-
-
-
-
-    // Mobile menu toggle enhancement
-    const navbarToggler = document.querySelector('.navbar-toggler');
-    const navbarCollapse = document.querySelector('.navbar-collapse');
-    
     if (navbarToggler && navbarCollapse) {
         navbarToggler.addEventListener('click', function() {
             navbarCollapse.classList.toggle('show');
@@ -304,17 +302,5 @@ document.addEventListener('DOMContentLoaded', function() {
             behavior: 'smooth'
         });
     });
-
-    // Add CSS for active nav link
-    const style = document.createElement('style');
-    style.textContent = `
-        .nav-link.active {
-            color: var(--primary-color) !important;
-        }
-        .nav-link.active::after {
-            width: 100% !important;
-        }
-    `;
-    document.head.appendChild(style);
 
 });

@@ -8,6 +8,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -52,44 +56,36 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-5">
+    <section id="about">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 mb-4 mb-lg-0">
-                    <img src="images/me.jpg" alt="Profile Picture" class="img-fluid rounded-circle shadow-lg" style="max-width: 400px;">
+            <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 3rem;">
+                <div style="flex: 0 0 auto; text-align: center;">
+                    <img src="images/me.jpg" alt="Profile Picture">
                 </div>
-                <div class="col-lg-6">
-                    <h2 class="display-5 fw-bold mb-4">About Me</h2>
-                    <p class="lead mb-4">
+                <div style="flex: 1; min-width: 300px;">
+                    <h2>About Me</h2>
+                    <p>
                         I'm a multimedia artist, front-end developer, and UI/UX designer with a passion for creating engaging digital experiences. With over 5 years of experience in the creative industry, I specialize in blending technical expertise with artistic vision.
                     </p>
-                    <p class="lead mb-4">
+                    <p>
                         My work spans across various mediums including web development, photography, and video production. I believe in the power of visual storytelling and creating meaningful connections through design.
                     </p>
-                    <div class="row g-3">
-                        <div class="col-6">
-                            <div class="d-flex align-items-center">
-                                <i class="bi bi-code-slash text-primary me-2"></i>
-                                <span>Web Development</span>
-                            </div>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <i class="bi bi-code-slash"></i>
+                            <span>Web Development</span>
                         </div>
-                        <div class="col-6">
-                            <div class="d-flex align-items-center">
-                                <i class="bi bi-palette text-primary me-2"></i>
-                                <span>UI/UX Design</span>
-                            </div>
+                        <div class="skill-item">
+                            <i class="bi bi-palette"></i>
+                            <span>UI/UX Design</span>
                         </div>
-                        <div class="col-6">
-                            <div class="d-flex align-items-center">
-                                <i class="bi bi-camera text-primary me-2"></i>
-                                <span>Photography</span>
-                            </div>
+                        <div class="skill-item">
+                            <i class="bi bi-camera"></i>
+                            <span>Photography</span>
                         </div>
-                        <div class="col-6">
-                            <div class="d-flex align-items-center">
-                                <i class="bi bi-film text-primary me-2"></i>
-                                <span>Video Production</span>
-                            </div>
+                        <div class="skill-item">
+                            <i class="bi bi-film"></i>
+                            <span>Video Production</span>
                         </div>
                     </div>
                 </div>
@@ -98,103 +94,63 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-5 bg-light">
+    <section id="projects">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto text-center mb-5">
-                    <h2 class="display-5 fw-bold mb-4">My Projects</h2>
-                    <p class="lead">Explore some of my recent work and creative projects</p>
-                </div>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="images/project1.jpg" class="card-img-top" alt="Project 1" style="height: 200px; object-fit: cover;">
-                        <div class="card-body">
-                            <h5 class="card-title">E-Commerce Platform</h5>
-                            <p class="card-text">A modern e-commerce website with React, Node.js, and MongoDB. Features include user authentication, payment processing, and admin dashboard.</p>
-                            <button class="btn btn-primary">More Details</button>
-                        </div>
+            <h2>My Projects</h2>
+            <p style="text-align: center; color: #6b7280; margin-bottom: 3rem;">Explore some of my recent work and creative projects</p>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="images/project1.jpg" alt="Project 1">
+                    <div class="project-card-body">
+                        <h5>E-Commerce Platform</h5>
+                        <p>A modern e-commerce website with React, Node.js, and MongoDB. Features include user authentication, payment processing, and admin dashboard.</p>
+                        <a href="#" class="btn-primary">More Details</a>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="images/project2.jpg" class="card-img-top" alt="Project 2" style="height: 200px; object-fit: cover;">
-                        <div class="card-body">
-                            <h5 class="card-title">Mobile App Design</h5>
-                            <p class="card-text">UI/UX design for a fitness tracking mobile app. Created wireframes, prototypes, and final designs using Figma and Adobe XD.</p>
-                            <button class="btn btn-primary">More Details</button>
-                        </div>
+                
+                <div class="project-card">
+                    <img src="images/project2.jpg" alt="Project 2">
+                    <div class="project-card-body">
+                        <h5>Mobile App Design</h5>
+                        <p>UI/UX design for a fitness tracking mobile app. Created wireframes, prototypes, and final designs using Figma and Adobe XD.</p>
+                        <a href="#" class="btn-primary">More Details</a>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="images/project2.jpg" class="card-img-top" alt="Project 3" style="height: 200px; object-fit: cover;">
-                        <div class="card-body">
-                            <h5 class="card-title">Photography Portfolio</h5>
-                            <p class="card-text">A stunning photography portfolio website showcasing landscape and portrait photography. Built with HTML5, CSS3, and JavaScript.</p>
-                            <button class="btn btn-primary">More Details</button>
-                        </div>
+                
+                <div class="project-card">
+                    <img src="images/project2.jpg" alt="Project 3">
+                    <div class="project-card-body">
+                        <h5>Photography Portfolio</h5>
+                        <p>A stunning photography portfolio website showcasing landscape and portrait photography. Built with HTML5, CSS3, and JavaScript.</p>
+                        <a href="#" class="btn-primary">More Details</a>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="images/project1.jpg" class="card-img-top" alt="Project 4" style="height: 200px; object-fit: cover;">
-                        <div class="card-body">
-                            <h5 class="card-title">Task Management App</h5>
-                            <p class="card-text">A collaborative task management application built with Vue.js and Firebase. Features real-time updates, team collaboration, and progress tracking.</p>
-                            <button class="btn btn-primary">More Details</button>
-                        </div>
+                
+                <div class="project-card">
+                    <img src="images/project1.jpg" alt="Project 4">
+                    <div class="project-card-body">
+                        <h5>Task Management App</h5>
+                        <p>A collaborative task management application built with Vue.js and Firebase. Features real-time updates, team collaboration, and progress tracking.</p>
+                        <a href="#" class="btn-primary">More Details</a>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="images/project2.jpg" class="card-img-top" alt="Project 5" style="height: 200px; object-fit: cover;">
-                        <div class="card-body">
-                            <h5 class="card-title">Brand Identity Design</h5>
-                            <p class="card-text">Complete brand identity design for a tech startup including logo design, color palette, typography, and marketing materials.</p>
-                            <button class="btn btn-primary">More Details</button>
-                        </div>
+                
+                <div class="project-card">
+                    <img src="images/project2.jpg" alt="Project 5">
+                    <div class="project-card-body">
+                        <h5>Brand Identity Design</h5>
+                        <p>Complete brand identity design for a tech startup including logo design, color palette, typography, and marketing materials.</p>
+                        <a href="#" class="btn-primary">More Details</a>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="images/project1.jpg" class="card-img-top" alt="Project 6" style="height: 200px; object-fit: cover;">
-                        <div class="card-body">
-                            <h5 class="card-title">Weather Dashboard</h5>
-                            <p class="card-text">A weather application with interactive maps and real-time data. Built with JavaScript, OpenWeather API, and Chart.js for data visualization.</p>
-                            <button class="btn btn-primary">More Details</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="images/project2.jpg" class="card-img-top" alt="Project 7" style="height: 200px; object-fit: cover;">
-                        <div class="card-body">
-                            <h5 class="card-title">Video Production</h5>
-                            <p class="card-text">Corporate video production for a manufacturing company. Includes filming, editing, motion graphics, and final delivery in multiple formats.</p>
-                            <button class="btn btn-primary">More Details</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="images/project1.jpg" class="card-img-top" alt="Project 8" style="height: 200px; object-fit: cover;">
-                        <div class="card-body">
-                            <h5 class="card-title">Restaurant Website</h5>
-                            <p class="card-text">A responsive restaurant website with online ordering system, menu management, and customer reviews. Built with WordPress and custom plugins.</p>
-                            <button class="btn btn-primary">More Details</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="images/project2.jpg" class="card-img-top" alt="Project 9" style="height: 200px; object-fit: cover;">
-                        <div class="card-body">
-                            <h5 class="card-title">Social Media Campaign</h5>
-                            <p class="card-text">Complete social media marketing campaign for a fashion brand. Includes content creation, strategy development, and performance analytics.</p>
-                            <button class="btn btn-primary">More Details</button>
-                        </div>
+                
+                <div class="project-card">
+                    <img src="images/project1.jpg" alt="Project 6">
+                    <div class="project-card-body">
+                        <h5>Weather Dashboard</h5>
+                        <p>A weather application with interactive maps and real-time data. Built with JavaScript, OpenWeather API, and Chart.js for data visualization.</p>
+                        <a href="#" class="btn-primary">More Details</a>
                     </div>
                 </div>
             </div>
@@ -202,55 +158,40 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-5">
+    <section id="contact">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto text-center mb-5">
-                    <h2 class="display-5 fw-bold mb-4">Get In Touch</h2>
-                    <p class="lead">Let's work together on your next project</p>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <div class="card shadow">
-                        <div class="card-body p-4">
-                            <form>
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">Name</label>
-                                    <input type="text" class="form-control" id="name" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="message" class="form-label">Message</label>
-                                    <textarea class="form-control" id="message" rows="5" required></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary w-100">Send Message</button>
-                            </form>
-                        </div>
+            <h2>Get In Touch</h2>
+            <p style="text-align: center; color: #6b7280; margin-bottom: 3rem;">Let's work together on your next project</p>
+            
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" required>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea class="form-control" id="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%; padding: 0.75rem;">Send Message</button>
+                </form>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-light text-dark py-4">
+    <footer>
         <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <p class="mb-0">&copy; 2025 Lebron Paulmark D. Dimayacyac. All rights reserved.</p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <div class="d-flex justify-content-md-end gap-3">
-                        <a href="https://www.linkedin.com/in/norbeld/" target="_blank" rel="noopener noreferrer" class="text-dark" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
-                        <a href="https://github.com/erlynorbel/" target="_blank" rel="noopener noreferrer" class="text-dark" title="GitHub"><i class="bi bi-github"></i></a>
-                        <a href="https://x.com/rlvpldi" target="_blank" rel="noopener noreferrer" class="text-dark" title="Twitter"><i class="bi bi-twitter"></i></a>
-                        <a href="https://www.instagram.com/rlvpldi" target="_blank" rel="noopener noreferrer" class="text-dark" title="Instagram"><i class="bi bi-instagram"></i></a>
-                    </div>
-                </div>
+            <p>&copy; 2025 Lebron Paulmark D. Dimayacyac. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/lebron-dimayacyac-286ba62a1/" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                <a href="https://github.com/erlynorbel/" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="bi bi-github"></i></a>
+                <a href="https://x.com/rlvpldi" target="_blank" rel="noopener noreferrer" title="Twitter"><i class="bi bi-twitter"></i></a>
+                <a href="https://www.instagram.com/rlvpldi" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="bi bi-instagram"></i></a>
             </div>
         </div>
     </footer>
