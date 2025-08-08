@@ -5,6 +5,11 @@
     box-sizing: border-box;
 }
 
+/* Global type scale */
+html {
+    font-size: 17px; /* increase all rem-based text site-wide */
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
@@ -30,6 +35,109 @@ body {
     --shadow-dark: rgba(0, 0, 0, 0.1);
 }
 
+/* Dark theme variables */
+.dark-theme {
+    --primary-color: #8b9af7;
+    --primary-dark: #7383f5;
+    --primary-light: #a58cff;
+    --secondary-color: #8d6cc7;
+    --accent-color: #f6b4ff;
+    --text-dark: #e5e7eb;
+    --text-light: #cbd5e1;
+    --text-white: #ffffff;
+    --bg-light: #0f172a; /* slate-900 */
+    --bg-white: #111827; /* gray-900 */
+    --border-color: #334155;
+    --shadow-light: rgba(0, 0, 0, 0.3);
+    --shadow-medium: rgba(0, 0, 0, 0.5);
+    --shadow-dark: rgba(0, 0, 0, 0.6);
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    background: var(--bg-white);
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px var(--shadow-dark);
+    cursor: pointer;
+    z-index: 1100;
+    transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.theme-toggle:hover {
+    transform: translateY(-2px);
+}
+.dark-theme .theme-toggle {
+    background: #0b1020;
+    color: #e5e7eb;
+    border-color: #334155;
+}
+
+/* Apply dark theme backgrounds/texts */
+body.dark-theme {
+    background: var(--bg-light);
+    color: var(--text-dark);
+}
+
+.dark-theme .navbar {
+    background: rgba(15, 23, 42, 0.8) !important;
+    border-bottom-color: var(--border-color);
+}
+.dark-theme .navbar-brand,
+.dark-theme .nav-link {
+    color: var(--text-dark) !important;
+}
+.dark-theme .nav-link:hover,
+.dark-theme .nav-link.active {
+    color: var(--primary-light) !important;
+}
+
+/* Hero in dark mode: keep gradient but darker text scales already via vars */
+.dark-theme .hero-section {
+    background: linear-gradient(135deg, #0f172a 0%, #1f2937 100%);
+}
+
+.dark-theme .skill-item {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.dark-theme #portfolio {
+    background: #0f172a;
+}
+.dark-theme .project-card {
+    background: #111827;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.45);
+}
+.dark-theme .project-card h5 { color: #e5e7eb; }
+.dark-theme .project-card p { color: #cbd5e1; }
+
+.dark-theme #contact {
+    background: linear-gradient(135deg, #0f172a 0%, #111827 100%);
+}
+.dark-theme .form-label { color: #e5e7eb; }
+.dark-theme .form-control {
+    background: #0b1020;
+    border-color: #334155;
+    color: #e5e7eb;
+}
+.dark-theme .form-control::placeholder { color: #94a3b8; }
+
+.dark-theme .btn-primary {
+    background: var(--primary-dark);
+}
+.dark-theme footer {
+    background: #0b1020;
+}
+
 /* Hero Section */
 .hero-section {
     height: 100vh;
@@ -46,16 +154,22 @@ body {
 }
 
 .hero-content h1 {
-    font-size: 4.5rem;
+    font-size: 5rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
     color: var(--text-white);
 }
 
 .hero-content p {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     margin-bottom: 2rem;
     color: rgba(255, 255, 255, 0.9);
+}
+
+/* Hero subtitle (lead) size */
+.hero-section .lead {
+    font-size: 1.5rem !important;
+    line-height: 1.5;
 }
 
 .hero-content .btn {
@@ -80,15 +194,24 @@ body {
 }
 
 .about-content h3 {
-    font-size: 2.5rem;
+    font-size: 2.75rem;
     margin-bottom: 1.5rem;
     color: var(--text-white);
 }
 
 .about-content p {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-bottom: 2rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: #ffffff !important; /* improve contrast over background */
+}
+
+/* Force About section text to align left */
+.about-content,
+.about-content h3,
+.about-content p,
+.about-content .skills-grid,
+.about-content .skill-item {
+    text-align: left !important;
 }
 
 .profile-img {
@@ -151,15 +274,16 @@ body {
 }
 
 #portfolio h2 {
-    font-size: 3.5rem;
+    font-size: 3.75rem;
     font-weight: 700;
     margin-bottom: 3rem;
     color: var(--text-dark);
 }
 
 .projects-grid {
-    max-height: 60vh;
-    overflow-y: auto;
+    /* Remove internal scrollbars; let page scroll instead */
+    max-height: none;
+    overflow: visible;
     padding: 1rem;
 }
 
@@ -172,25 +296,43 @@ body {
     overflow: hidden;
 }
 
+/* Make all project cards equal height across the row */
+.projects-grid .row > [class*="col-"] {
+    display: flex;
+}
+.projects-grid .row > [class*="col-"] > .project-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.project-card .card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+.project-card .card-body .btn {
+    margin-top: auto;
+}
+
 .project-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 15px 35px var(--shadow-medium);
 }
 
 .project-card img {
-    height: 200px;
+    height: 220px; /* consistent image height for equal card tops */
     object-fit: cover;
 }
 
 .project-card h5 {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 600;
     margin-bottom: 1rem;
     color: var(--text-dark);
 }
 
 .project-card p {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin-bottom: 1.5rem;
     color: var(--text-light);
 }
@@ -240,7 +382,7 @@ body {
 }
 
 #contact h2 {
-    font-size: 3.5rem;
+    font-size: 3.75rem;
     font-weight: 700;
     margin-bottom: 3rem;
     color: var(--text-dark);
@@ -253,14 +395,14 @@ body {
 }
 
 .form-label {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 600;
     margin-bottom: 0.75rem;
     color: var(--text-dark);
 }
 
 .form-control {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     padding: 1rem;
     border: 2px solid var(--border-color);
     border-radius: 8px;
@@ -280,7 +422,7 @@ body {
 }
 
 .btn-primary {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     padding: 1rem 2rem;
     background: var(--primary-color);
     border: none;
@@ -307,6 +449,12 @@ body {
 .modal-body {
     font-size: 1.1rem;
     color: var(--text-light);
+}
+
+.modal-body img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 .modal-body h4 {
@@ -337,6 +485,17 @@ body {
 .modal-footer .btn-secondary:hover {
     background: var(--text-dark);
     transform: translateY(-1px);
+}
+
+/* Dark theme modal */
+.dark-theme .modal-content {
+    background: #0b1020;
+    color: #e5e7eb;
+}
+.dark-theme .modal-title { color: #e5e7eb; }
+.dark-theme .modal-body { color: #cbd5e1; }
+.dark-theme .btn-close {
+    filter: invert(1) hue-rotate(180deg);
 }
 
 /* Navbar Styles */
@@ -374,19 +533,20 @@ body {
     }
     
     .hero-content h1 {
-        font-size: 3rem;
+        font-size: 3.5rem;
     }
     
-    .hero-content p {
-        font-size: 1.2rem;
+    .hero-content p,
+    .hero-section .lead {
+        font-size: 1.3rem !important;
     }
     
     .about-content h3 {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
     
     .about-content p {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
     
     .profile-img {
@@ -411,18 +571,22 @@ body {
     
     #portfolio h2,
     #contact h2 {
-        font-size: 2.5rem;
+        font-size: 2.75rem;
     }
     
     .project-card h5 {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
     }
     
     .project-card p {
-        font-size: 1rem;
+        font-size: 1.05rem;
     }
     
-    .projects-grid,
+    /* Allow full height; no internal scrollbar for projects */
+    .projects-grid {
+        max-height: none;
+        overflow: visible;
+    }
     .contact-form {
         max-height: 50vh;
     }
@@ -430,7 +594,7 @@ body {
 
 @media (max-width: 768px) {
     body {
-        font-size: 16px;
+        font-size: 17px;
     }
     
     .hero-section {
@@ -439,19 +603,20 @@ body {
     }
     
     .hero-content h1 {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
     }
     
-    .hero-content p {
-        font-size: 1.1rem;
+    .hero-content p,
+    .hero-section .lead {
+        font-size: 1.2rem !important;
     }
     
     .about-content h3 {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
     
     .about-content p {
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
     
     #portfolio,
@@ -462,27 +627,68 @@ body {
     
     #portfolio h2,
     #contact h2 {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
     
     .project-card h5 {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
     }
     
     .form-label {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
     
     .form-control {
-        font-size: 1rem;
+        font-size: 1.05rem;
     }
     
     .btn-primary {
-        font-size: 1.1rem;
+        font-size: 1.15rem;
     }
     
-    .projects-grid,
+    .projects-grid {
+        max-height: none;
+        overflow: visible;
+    }
     .contact-form {
         max-height: 45vh;
     }
+
+/* Contact form alerts */
+.contact-modal-alert {
+    display: none;
+    position: relative;
+    margin-bottom: 1rem;
+}
+.contact-modal-alert.show { display: block; }
+.contact-alert-content {
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background: var(--bg-white);
+    box-shadow: 0 10px 30px var(--shadow-dark);
+    overflow: hidden;
+}
+.contact-alert-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+.contact-alert-body {
+    padding: 1rem;
+    color: var(--text-light);
+}
+.contact-alert-content.success .contact-alert-header { background: #ecfeff; }
+.contact-alert-content.error .contact-alert-header { background: #fef2f2; }
+.contact-alert-content.info .contact-alert-header { background: #eff6ff; }
+
+.dark-theme .contact-alert-content {
+    background: #0b1020;
+}
+.dark-theme .contact-alert-header { border-bottom-color: #334155; }
+.dark-theme .contact-alert-body { color: #cbd5e1; }
+.dark-theme .contact-alert-content.success .contact-alert-header { background: #0b2a2f; }
+.dark-theme .contact-alert-content.error .contact-alert-header { background: #2a0b0b; }
+.dark-theme .contact-alert-content.info .contact-alert-header { background: #0b1630; }
 }
